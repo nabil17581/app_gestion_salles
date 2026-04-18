@@ -20,7 +20,7 @@ class DataSalle:
         sql = "INSERT INTO salle VALUES (%s,%s,%s,%s)"
         values = (salle.code,salle.description,salle.categorie,salle.capacite)
         cursor.execute(sql, values)
-        print("Ajout d'une nouvelle salle réussit")
+
         con.commit()
         cursor.close()
         con.close()
@@ -34,7 +34,7 @@ class DataSalle:
 
         cursor.execute(sql, values)
         con.commit()
-        print("Mise a jour effectuée avec succès ")
+
         cursor.close()
         con.close()
 
@@ -47,7 +47,7 @@ class DataSalle:
 
         cursor.execute(sql, values)
         con.commit()
-        print("Salle supprimée avec succes ")
+        
         cursor.close()
         con.close()
     def get_data(self,code):
