@@ -34,8 +34,24 @@ class DataSalle:
 
         cursor.execute(sql, values)
         con.commit()
+        print("Mise a jour effectuée avec succès ")
         cursor.close()
         con.close()
+
+    def delete_data(self,code):
+
+        con = self.get_connection()
+        cursor = con.cursor()
+        sql = "DELETE FROM salle WHERE code = %s"
+        values = (code,)
+
+        cursor.execute(sql, values)
+        con.commit()
+        print("Salle supprimée avec succes ")
+        cursor.close()
+        con.close()
+
+
 
 
 
