@@ -62,6 +62,18 @@ class DataSalle:
         con.close()
         return data
 
+    def get_salles(self):
+        con = self.get_connection()
+        cursor = con.cursor()
+        sql = "SELECT * FROM salle"
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        con.commit()
+        cursor.close()
+        con.close()
+        return data
+
+
 
 
 
