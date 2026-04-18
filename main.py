@@ -6,7 +6,8 @@ salle2 = Salle("S102","Salle  table centrale et écran.","Réunion",12)
 salle3= Salle("S103","Salle polyvalente adaptée aux formations.","Atelier",36)
 
 data = DataSalle()
-data.delete_data("S102")
+affiche = data.get_data("S101")
+print(affiche)
 
 
 

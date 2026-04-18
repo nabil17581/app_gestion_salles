@@ -50,6 +50,18 @@ class DataSalle:
         print("Salle supprimée avec succes ")
         cursor.close()
         con.close()
+    def get_data(self,code):
+        con = self.get_connection()
+        cursor = con.cursor()
+        sql = "SELECT * FROM salle WHERE code = %s"
+        values = (code,)
+        cursor.execute(sql, values)
+        data = cursor.fetchall()
+        con.commit()
+        cursor.close()
+        con.close()
+        return data
+
 
 
 
