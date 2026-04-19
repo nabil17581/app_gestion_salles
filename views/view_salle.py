@@ -1,5 +1,4 @@
-
-
+from models.salle import Salle
 from services.services_salle import ServiceSalle
 import customtkinter as ctk
 
@@ -61,6 +60,18 @@ class ViewSalle:
 
         self.btn_rechercher = ctk.CTkButton(self.frame_action, text="Rechercher")
         self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
+
+    #Ajouter une salle
+    def ajout_salle(self):
+        code = self.entry_code.get()
+        description = self.entry_desc.get()
+        cat = self.entry_cat.get()
+        cap = self.entry_cap.get()
+
+        salle = Salle(code, description, cat, cap)
+
+        msg = self.service_salle.ajouter_salle(salle)
+        print(msg)
 
 
     def run(self):
