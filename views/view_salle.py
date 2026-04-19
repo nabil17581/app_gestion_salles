@@ -75,19 +75,44 @@ class ViewSalle:
 
 
 
+
+
+
     #Ajouter une salle
-    def ajout_salle(self):
+    def add_salle(self):
 
         salle_add = self.get_info()
 
-        msg = self.service_salle.ajouter_salle(salle_add)
-        print(msg)
+        resultat = self.service_salle.ajouter_salle(salle_add)
+        print(resultat)
 
     #Modifier salle
     def update_salle(self):
         salle_update = self.get_info()
-        msg = self.service_salle.modifier_salle(salle_update)
-        print(msg)
+        resultat = self.service_salle.modifier_salle(salle_update)
+        print(resultat)
+    #Supprimer salle
+    def del_salle(self):
+        salle_del = self.get_info()
+        resultat = self.service_salle.supprimer_salle(salle_del)
+        print(resultat)
+    #Rechercher salle
+    def get_salle(self):
+        code_get = self.entry_code.get()
+        resultat = self.service_salle.rechercher_salle(code_get)
+        if resultat:
+
+            self.entry_desc.delete(0, "end")
+            self.entry_desc.insert(0, resultat.description)
+
+            self.entry_cat.delete(0, "end")
+            self.entry_cat.insert(0, resultat.categorie)
+
+            self.entry_cap.delete(0, "end")
+            self.entry_cap.insert(0, str(resultat.capacite))
+
+
+
 
 
 
