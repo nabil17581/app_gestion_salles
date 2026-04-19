@@ -47,7 +47,7 @@ class DataSalle:
 
         cursor.execute(sql, values)
         con.commit()
-        
+
         cursor.close()
         con.close()
     def get_data(self,code):
@@ -57,10 +57,16 @@ class DataSalle:
         values = (code,)
         cursor.execute(sql, values)
         data = cursor.fetchall()
+
         con.commit()
         cursor.close()
         con.close()
-        return data
+
+        if len(data) == 0:
+            return False
+        else:
+
+            return data
 
     def get_salles(self):
         con = self.get_connection()
