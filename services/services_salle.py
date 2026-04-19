@@ -48,7 +48,7 @@ class ServiceSalle:
             print(code_exists)
 
 
-    def recuperer_salle(self):
+    def recuperer_salles(self):
         table = self.dao_salle.get_salles()
         if table is False:
             print("Table vide! Aucune insformations existante ")

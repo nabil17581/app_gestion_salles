@@ -1,8 +1,56 @@
+
+
 from services.services_salle import ServiceSalle
+import customtkinter as ctk
 
 
 
 class ViewSalle:
     def __init__(self):
         self.service_salle = ServiceSalle()
+
+        #Fenetre principal
+        self.app = ctk.CTk()
+        self.app.title("Gestion des salles")
+        self.app.geometry("800x600")
+        ctk.set_appearance_mode("light")
+        ctk.set_default_color_theme("green")
+
+        #Cadre Information salle
+
+        self.frame_info = ctk.CTkFrame(self.app)
+        self.frame_info.pack(padx=10, pady=10)
+
+        self.label_code = ctk.CTkLabel(self.frame_info, text="Code salle :")
+        self.label_code.grid(row=1, column=0, padx=10, pady=5, sticky="w")
+
+        self.entry_code = ctk.CTkEntry(self.frame_info)
+        self.entry_code.grid(row=1, column=1, padx=10, pady=5)
+
+        self.label_desc = ctk.CTkLabel(self.frame_info, text="Description :")
+        self.label_desc.grid(row=2, column=0, padx=10, pady=5, sticky="w")
+
+        self.entry_desc = ctk.CTkEntry(self.frame_info)
+        self.entry_desc.grid(row=2, column=1, padx=10, pady=5)
+
+        self.label_cat = ctk.CTkLabel(self.frame_info, text="Catégorie :")
+        self.label_cat.grid(row=3, column=0, padx=10, pady=5, sticky="w")
+
+        self.entry_cat = ctk.CTkEntry(self.frame_info)
+        self.entry_cat.grid(row=3, column=1, padx=10, pady=5)
+
+        self.label_cap = ctk.CTkLabel(self.frame_info, text="Capacité :")
+        self.label_cap.grid(row=4, column=0, padx=10, pady=5, sticky="w")
+
+        self.entry_cap = ctk.CTkEntry(self.frame_info)
+        self.entry_cap.grid(row=4, column=1, padx=10, pady=5)
+
+    def run(self):
+        self.app.mainloop()
+
+
+
+
+
+
 

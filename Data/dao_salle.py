@@ -86,7 +86,7 @@ class DataSalle:
 
 
 
-        if len(data) == 0:
+        if len(salles) == 0:
             return False
         else:
             return salles
