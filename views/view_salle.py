@@ -45,6 +45,24 @@ class ViewSalle:
         self.entry_cap = ctk.CTkEntry(self.frame_info)
         self.entry_cap.grid(row=4, column=1, padx=10, pady=5)
 
+        #Cadre actions
+
+        self.frame_action = ctk.CTkFrame(self.app)
+        self.frame_action.pack(padx=10, pady=10)
+
+        self.btn_ajouter = ctk.CTkButton(self.frame_action, text="Ajouter")
+        self.btn_ajouter.grid(row=0, column=0, padx=10, pady=10)
+
+        self.btn_modifier = ctk.CTkButton(self.frame_action, text="Modifier")
+        self.btn_modifier.grid(row=0, column=1, padx=10, pady=10)
+
+        self.btn_supprimer= ctk.CTkButton(self.frame_action, text="Supprimer")
+        self.btn_supprimer.grid(row=0, column=2, padx=10, pady=10)
+
+        self.btn_rechercher = ctk.CTkButton(self.frame_action, text="Rechercher")
+        self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
+
+
     def run(self):
         self.app.mainloop()
 
