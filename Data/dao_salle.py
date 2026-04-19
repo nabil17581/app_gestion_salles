@@ -74,10 +74,23 @@ class DataSalle:
         sql = "SELECT * FROM salle"
         cursor.execute(sql)
         data = cursor.fetchall()
+
         con.commit()
         cursor.close()
         con.close()
-        return data
+
+        salles = []
+        for s in data:
+            salle =Salle(s[0],s[1],s[2],s[3])
+            salles.append(salle)
+
+
+
+        if len(data) == 0:
+            return False
+        else:
+            return salles
+
 
 
 

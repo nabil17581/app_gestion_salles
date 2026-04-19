@@ -1,9 +1,11 @@
 from Data.dao_salle import DataSalle
+from models.salle import Salle
 
 
 class ServiceSalle:
     def __init__(self):
         self.dao_salle = DataSalle()
+
     def ajouter_salle(self, salle):
         if not salle.code or not salle.description or not salle.categorie or salle.capacite is None:
             return False, "Toutes les informations doivent être saisies."
@@ -44,6 +46,15 @@ class ServiceSalle:
             print("Code n'existe pas")
         else :
             print(code_exists)
+
+
+    def recuperer_salle(self):
+        table = self.dao_salle.get_salles()
+        if table is False:
+            print("Table vide! Aucune insformations existante ")
+        else :
+            for salle in table:
+                Salle.afficher_infos(salle)
 
 
 

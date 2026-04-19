@@ -7,7 +7,7 @@ salle2 = Salle("S104","Salle  table centrale et écran.","Réunion",20)
 salle3= Salle("S103","Salle polyvalente adaptée aux formations.","Formation",0)
 
 service = ServiceSalle()
-service.rechercher_salle("101")
+service.recuperer_salle()
 
 
 
