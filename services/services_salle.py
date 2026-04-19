@@ -38,6 +38,15 @@ class ServiceSalle:
             self.dao_salle.delete_data(code)
             print("Salle supprimer avec succès")
 
+    def rechercher_salle(self,code):
+        code_exists = self.dao_salle.get_data(code)
+        if code_exists is False:
+            print("Code n'existe pas")
+        else :
+            print(code_exists)
+
+
+
 
 
 

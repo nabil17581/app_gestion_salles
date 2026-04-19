@@ -7,10 +7,7 @@ salle2 = Salle("S104","Salle  table centrale et écran.","Réunion",20)
 salle3= Salle("S103","Salle polyvalente adaptée aux formations.","Formation",0)
 
 service = ServiceSalle()
-print("--------premiere requete-----------")
-service.supprimer_salle("s107")
-print("--------deuxieme requete-----------")
-service.supprimer_salle("S102")
+service.rechercher_salle("101")
 
 
 
