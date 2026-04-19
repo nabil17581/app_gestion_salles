@@ -4,11 +4,11 @@ from services.services_salle import ServiceSalle
 
 salle = Salle("S101","Salle équipée d’un projecteur.","Informatique",25)
 salle2 = Salle("S104","Salle  table centrale et écran.","Réunion",20)
-salle3= Salle("S103","Salle polyvalente adaptée aux formations.","Atelier",36)
+salle3= Salle("S103","Salle polyvalente adaptée aux formations.","Formation",0)
 
 service = ServiceSalle()
 
-service.ajouter_salle(salle2)
-print(service.ajouter_salle(salle2))
+service.modifier_salle(salle3)
+print(service.modifier_salle(salle3))
 
 
