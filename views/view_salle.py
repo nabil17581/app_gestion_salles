@@ -92,23 +92,42 @@ class ViewSalle:
     def add_salle(self):
 
         salle_add = self.get_info()
+        if len(salle_add.code)>5:
+            messagebox.showerror("Erreur", "La taille maximale du code doit etre 5 caracteres ")
+            return
 
-        resultat = self.service_salle.ajouter_salle(salle_add)
-        print(resultat)
+
+
+        resultat,message = self.service_salle.ajouter_salle(salle_add)
+        if resultat :
+            messagebox.showinfo("Bravo", message)
+
+        else:
+            messagebox.showerror("Erreur", message)
+
+
 
     #Modifier salle
     def update_salle(self):
         salle_update = self.get_info()
 
-        resultat = self.service_salle.modifier_salle(salle_update)
-        print(resultat)
+        resultat,message = self.service_salle.modifier_salle(salle_update)
+        if resultat:
+            messagebox.showinfo("Bravo", message)
+
+        else:
+            messagebox.showerror("Erreur", message)
 
 
     #Supprimer salle
     def del_salle(self):
         code_del = self.entry_code.get()
-        msg=self.service_salle.supprimer_salle(code_del)
-        print(msg)
+        resultat,message=self.service_salle.supprimer_salle(code_del)
+        if resultat:
+            messagebox.showinfo("Bravo", message)
+
+        else:
+            messagebox.showerror("Erreur", message)
 
     #Rechercher salle
     from tkinter import messagebox
@@ -121,7 +140,7 @@ class ViewSalle:
             messagebox.showerror("Erreur", "Veuillez entrer un code")
             return
 
-        resultat = self.service_salle.rechercher_salle(code_get)
+        resultat= self.service_salle.rechercher_salle(code_get)
 
         if not resultat:
             messagebox.showerror("Erreur", "Salle introuvable")
@@ -135,6 +154,18 @@ class ViewSalle:
 
         self.entry_cap.delete(0, "end")
         self.entry_cap.insert(0, str(resultat.capacite))
+
+        message = (
+            f"--------SALLE--------\n"
+            f"Code : {resultat.code}\n"
+            f"Description : {resultat.description}\n"
+            f"Catégorie : {resultat.categorie}\n"
+            f"Capacité : {resultat.capacite}"
+        )
+
+        messagebox.showinfo("Résultat recherche", message)
+
+
 
 
 
