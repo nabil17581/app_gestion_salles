@@ -1,4 +1,4 @@
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 
 from models.salle import Salle
 from services.services_salle import ServiceSalle
@@ -6,8 +6,9 @@ import customtkinter as ctk
 
 
 
-class ViewSalle:
+class ViewSalle():
     def __init__(self):
+
         self.service_salle = ServiceSalle()
 
         #Fenetre principal
@@ -63,6 +64,34 @@ class ViewSalle:
         self.btn_rechercher = ctk.CTkButton(self.frame_action, text="Rechercher",command=self.get_salle)
         self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
 
+        # Cadre Liste des salles
+        self.cadreList = ctk.CTkFrame(self, corner_radius=10, width=400)
+        self.cadreList.pack(pady=10, padx=10)
+        self.treeList = ttk.Treeview(self.cadreList, columns=("code", "description", "categorie", "capacite"),show="headings")
+
+        # En-têtes
+        self.treeList.heading("code", text="CODE")
+        self.treeList.heading("description", text="Description")
+        self.treeList.heading("categorie", text="Catégorie")
+        self.treeList.heading("capacite", text="Capacité")
+
+        # Largeur des colonnes
+
+        self.treeList.column("code", width=50)
+        self.treeList.column("description", width=150)
+        self.treeList.column("categorie", width=100)
+        self.treeList.column("capacite", width=100)
+        self.treeList.pack(expand=True, fill="both", padx=10, pady=10)
+
+    def lister_salles(self):
+        self.treeList.delete(*self.treeList.get_children())
+        liste = self.service_salle.recuperer_salles()
+        for s in liste:
+            self.treeList.insert("", "end", values=(s.code, s.description, s.categorie, s.capacite))
+
+
+
+
     def get_info(self):
         code = self.entry_code.get()
         description = self.entry_desc.get()
@@ -78,6 +107,8 @@ class ViewSalle:
         except ValueError:
             messagebox.showerror("Erreur", "La capacité doit être un nombre")
             return None
+
+
 
         return Salle(code, description, categorie, capacite)
 
@@ -170,8 +201,13 @@ class ViewSalle:
 
 
 
+
+
+
+
     def run(self):
         self.app.mainloop()
+
 
 
 
