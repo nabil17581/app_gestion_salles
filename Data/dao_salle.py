@@ -52,24 +52,24 @@ class DataSalle:
         con.close()
         return deleted > 0
 
-    def get_data(self,code):
+    def get_data(self, code):
+
         con = self.get_connection()
         cursor = con.cursor()
+
         sql = "SELECT * FROM salle WHERE code = %s"
         values = (code,)
-        cursor.execute(sql, values)
-        data = cursor.fetchall()
 
-        con.commit()
+        cursor.execute(sql, values)
+        data = cursor.fetchone()
+
         cursor.close()
         con.close()
 
-        if len(data) == 0:
-            return False
-        else:
+        if data is None:
+            return None
 
-            return data
-
+        return Salle(data[0], data[1], data[2], data[3])
     def get_salles(self):
         con = self.get_connection()
         cursor = con.cursor()

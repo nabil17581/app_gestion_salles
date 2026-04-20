@@ -50,9 +50,9 @@ class ServiceSalle:
     def rechercher_salle(self,code):
         code_exists = self.dao_salle.get_data(code)
         if code_exists is False:
-            print("Code n'existe pas")
+            return None
         else :
-            print(code_exists)
+            return code_exists
 
 
     def recuperer_salles(self):

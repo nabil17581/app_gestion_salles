@@ -60,7 +60,7 @@ class ViewSalle:
         self.btn_supprimer= ctk.CTkButton(self.frame_action, text="Supprimer",command= self.del_salle)
         self.btn_supprimer.grid(row=0, column=2, padx=10, pady=10)
 
-        self.btn_rechercher = ctk.CTkButton(self.frame_action, text="Rechercher")
+        self.btn_rechercher = ctk.CTkButton(self.frame_action, text="Rechercher",command=self.get_salle)
         self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
 
     def get_info(self):
@@ -111,21 +111,30 @@ class ViewSalle:
         print(msg)
 
     #Rechercher salle
+    from tkinter import messagebox
+
     def get_salle(self):
+
         code_get = self.entry_code.get()
+
+        if not code_get:
+            messagebox.showerror("Erreur", "Veuillez entrer un code")
+            return
+
         resultat = self.service_salle.rechercher_salle(code_get)
-        if resultat:
 
-            self.entry_desc.delete(0, "end")
-            self.entry_desc.insert(0, resultat.description)
+        if not resultat:
+            messagebox.showerror("Erreur", "Salle introuvable")
+            return
 
-            self.entry_cat.delete(0, "end")
-            self.entry_cat.insert(0, resultat.categorie)
+        self.entry_desc.delete(0, "end")
+        self.entry_desc.insert(0, resultat.description)
 
-            self.entry_cap.delete(0, "end")
-            self.entry_cap.insert(0, str(resultat.capacite))
+        self.entry_cat.delete(0, "end")
+        self.entry_cat.insert(0, resultat.categorie)
 
-
+        self.entry_cap.delete(0, "end")
+        self.entry_cap.insert(0, str(resultat.capacite))
 
 
 
