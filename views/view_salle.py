@@ -49,13 +49,13 @@ class ViewSalle:
         self.frame_action = ctk.CTkFrame(self.app)
         self.frame_action.pack(padx=10, pady=10)
 
-        self.btn_ajouter = ctk.CTkButton(self.frame_action, text="Ajouter")
+        self.btn_ajouter = ctk.CTkButton(self.frame_action, text="Ajouter",command=self.add_salle)
         self.btn_ajouter.grid(row=0, column=0, padx=10, pady=10)
 
-        self.btn_modifier = ctk.CTkButton(self.frame_action, text="Modifier")
+        self.btn_modifier = ctk.CTkButton(self.frame_action, text="Modifier",command=self.update_salle)
         self.btn_modifier.grid(row=0, column=1, padx=10, pady=10)
 
-        self.btn_supprimer= ctk.CTkButton(self.frame_action, text="Supprimer")
+        self.btn_supprimer= ctk.CTkButton(self.frame_action, text="Supprimer",command= self.del_salle)
         self.btn_supprimer.grid(row=0, column=2, padx=10, pady=10)
 
         self.btn_rechercher = ctk.CTkButton(self.frame_action, text="Rechercher")
@@ -65,7 +65,8 @@ class ViewSalle:
         code = self.entry_code.get()
         description = self.entry_desc.get()
         categorie = self.entry_cat.get()
-        capacite = self.entry_cap.get()
+        capacite = int(self.entry_cap.get())
+
 
         salle = Salle(code, description, categorie, capacite)
         return salle
@@ -89,15 +90,19 @@ class ViewSalle:
     #Modifier salle
     def update_salle(self):
         salle_update = self.get_info()
+
         resultat = self.service_salle.modifier_salle(salle_update)
         print(resultat)
+
+
     #Supprimer salle
     def del_salle(self):
-        salle_del = self.get_info()
-        resultat = self.service_salle.supprimer_salle(salle_del)
-        print(resultat)
+        code_del = self.entry_code.get()
+        msg=self.service_salle.supprimer_salle(code_del)
+        print(msg)
+
     #Rechercher salle
-    def get_salle(self):
+    """def get_salle(self):
         code_get = self.entry_code.get()
         resultat = self.service_salle.rechercher_salle(code_get)
         if resultat:
@@ -109,7 +114,7 @@ class ViewSalle:
             self.entry_cat.insert(0, resultat.categorie)
 
             self.entry_cap.delete(0, "end")
-            self.entry_cap.insert(0, str(resultat.capacite))
+            self.entry_cap.insert(0, str(resultat.capacite))"""
 
 
 

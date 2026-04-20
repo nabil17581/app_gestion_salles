@@ -47,9 +47,11 @@ class DataSalle:
 
         cursor.execute(sql, values)
         con.commit()
-
+        deleted = cursor.rowcount
         cursor.close()
         con.close()
+        return deleted > 0
+
     def get_data(self,code):
         con = self.get_connection()
         cursor = con.cursor()

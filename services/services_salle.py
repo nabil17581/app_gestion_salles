@@ -20,25 +20,32 @@ class ServiceSalle:
         return True, "Salle ajoutée avec succès."
 
     def modifier_salle(self, salle):
-        if not salle.code or not salle.description or not salle.categorie or salle.capacite is None:
+        if not salle.code :
             return False, "Toutes les informations doivent être saisies."
 
+        if salle.capacite:
+            if salle.capacite < 1:
+                return False, "Valeur invalide : une salle doit accueillir au moins 1 personne."
+        else:
+            self.dao_salle.update_data(salle)
+            return True, "Salle modifier avec succès."
 
-        if salle.capacite < 1:
-            return False, "Valeur invalide : une salle doit accueillir au moins 1 personne."
 
 
-        self.dao_salle.update_data(salle)
 
-        return True, "Salle modifier avec succès."
+
 
     def supprimer_salle(self,code):
-        code_exists = self.dao_salle.get_data(code)
-        if code_exists is False:
-            print("Code n'existe pas")
+
+        if not code  :
+            return False, "Code obligatoire !"
+
+        suppression = self.dao_salle.delete_data(code)
+
+        if suppression:
+             return True, "Salle Supprimée "
         else:
-            self.dao_salle.delete_data(code)
-            print("Salle supprimer avec succès")
+             return False, "Aucune salle trouvée avec ce code"
 
     def rechercher_salle(self,code):
         code_exists = self.dao_salle.get_data(code)
