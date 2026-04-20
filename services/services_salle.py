@@ -23,12 +23,12 @@ class ServiceSalle:
         if not salle.code or not salle.description or not salle.categorie or not salle.description :
             return False, "Toutes les informations doivent être saisies."
 
-        if salle.capacite is not None:
-            if salle.capacite < 1:
-                return False, "Valeur invalide : une salle doit accueillir au moins 1 personne."
-            else:
-                self.dao_salle.update_data(salle)
-                return True, "Salle modifier avec succès."
+        if salle.capacite is  None or salle.capacite < 1:
+
+            return False, "Valeur invalide : une salle doit accueillir au moins 1 personne."
+        else:
+            self.dao_salle.update_data(salle)
+            return True, "Salle modifier avec succès."
 
 
 

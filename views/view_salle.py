@@ -1,3 +1,5 @@
+from tkinter import messagebox
+
 from models.salle import Salle
 from services.services_salle import ServiceSalle
 import customtkinter as ctk
@@ -65,12 +67,19 @@ class ViewSalle:
         code = self.entry_code.get()
         description = self.entry_desc.get()
         categorie = self.entry_cat.get()
-        capacite = int(self.entry_cap.get())
+        cap = self.entry_cap.get()
 
+        if cap == "":
+            messagebox.showerror("Erreur", "La capacité est obligatoire")
+            return None
 
-        salle = Salle(code, description, categorie, capacite)
-        return salle
+        try:
+            capacite = int(cap)
+        except ValueError:
+            messagebox.showerror("Erreur", "La capacité doit être un nombre")
+            return None
 
+        return Salle(code, description, categorie, capacite)
 
 
 
