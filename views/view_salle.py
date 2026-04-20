@@ -65,7 +65,7 @@ class ViewSalle():
         self.btn_rechercher.grid(row=0, column=3, padx=10, pady=10)
 
         # Cadre Liste des salles
-        self.cadreList = ctk.CTkFrame(self, corner_radius=10, width=400)
+        self.cadreList = ctk.CTkFrame(self.app, corner_radius=10, width=400)
         self.cadreList.pack(pady=10, padx=10)
         self.treeList = ttk.Treeview(self.cadreList, columns=("code", "description", "categorie", "capacite"),show="headings")
 
@@ -82,6 +82,10 @@ class ViewSalle():
         self.treeList.column("categorie", width=100)
         self.treeList.column("capacite", width=100)
         self.treeList.pack(expand=True, fill="both", padx=10, pady=10)
+        self.lister_salles()
+
+
+
 
     def lister_salles(self):
         self.treeList.delete(*self.treeList.get_children())
@@ -123,6 +127,9 @@ class ViewSalle():
     def add_salle(self):
 
         salle_add = self.get_info()
+
+        if salle_add is None:
+            return
         if len(salle_add.code)>5:
             messagebox.showerror("Erreur", "La taille maximale du code doit etre 5 caracteres ")
             return
@@ -130,6 +137,7 @@ class ViewSalle():
 
 
         resultat,message = self.service_salle.ajouter_salle(salle_add)
+        self.lister_salles()
         if resultat :
             messagebox.showinfo("Bravo", message)
 
@@ -161,7 +169,7 @@ class ViewSalle():
             messagebox.showerror("Erreur", message)
 
     #Rechercher salle
-    from tkinter import messagebox
+
 
     def get_salle(self):
 
@@ -207,6 +215,7 @@ class ViewSalle():
 
     def run(self):
         self.app.mainloop()
+
 
 
 

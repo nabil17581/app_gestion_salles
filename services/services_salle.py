@@ -57,11 +57,9 @@ class ServiceSalle:
 
     def recuperer_salles(self):
         table = self.dao_salle.get_salles()
-        if table is False:
-            print("Table vide! Aucune insformations existante ")
-        else :
-            for salle in table:
-                Salle.afficher_infos(salle)
+        if not table :
+            return [],"Table vide"
+        return table
 
 
 
