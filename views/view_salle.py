@@ -102,7 +102,7 @@ class ViewSalle:
         print(msg)
 
     #Rechercher salle
-    """def get_salle(self):
+    def get_salle(self):
         code_get = self.entry_code.get()
         resultat = self.service_salle.rechercher_salle(code_get)
         if resultat:
@@ -114,7 +114,7 @@ class ViewSalle:
             self.entry_cat.insert(0, resultat.categorie)
 
             self.entry_cap.delete(0, "end")
-            self.entry_cap.insert(0, str(resultat.capacite))"""
+            self.entry_cap.insert(0, str(resultat.capacite))
 
 
 
