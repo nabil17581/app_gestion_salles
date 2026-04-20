@@ -151,6 +151,7 @@ class ViewSalle():
         salle_update = self.get_info()
 
         resultat,message = self.service_salle.modifier_salle(salle_update)
+        self.lister_salles()
         if resultat:
             messagebox.showinfo("Bravo", message)
 
@@ -162,6 +163,7 @@ class ViewSalle():
     def del_salle(self):
         code_del = self.entry_code.get()
         resultat,message=self.service_salle.supprimer_salle(code_del)
+        self.lister_salles()
         if resultat:
             messagebox.showinfo("Bravo", message)
 
@@ -180,6 +182,7 @@ class ViewSalle():
             return
 
         resultat= self.service_salle.rechercher_salle(code_get)
+        self.lister_salles()
 
         if not resultat:
             messagebox.showerror("Erreur", "Salle introuvable")
